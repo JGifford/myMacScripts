@@ -2,11 +2,11 @@ myMacScripts
 ============
 A repository of Mac Scripts that I use on my various Macs in my home network.
 
-Scripts
-  eraseOptical
-  powerCheck
-Installing
-  install.sh
++ Scripts
+  * eraseOptical
+  * powerCheck
++ Installing
+  * install.sh
 
 Scripts
 -------
@@ -25,6 +25,7 @@ Installing
 ###install.sh
 
 Usage:
+
 	install.sh {eraseOptical|powerCheck}
 
 ===
