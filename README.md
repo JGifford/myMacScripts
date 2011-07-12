@@ -15,7 +15,7 @@ Scripts
 > Erases an optical device from the commandline rather than using the
 > Disk Utility GUI.
 
-###powerCheck
+### powerCheck
 > When coupled with a crontab entry, periodically checks the system's power
 > sources and sends an alert if configured.
 
@@ -23,6 +23,8 @@ Installing
 ----------
 
 ###install.sh
+
+All installations go into $HOME/bin
 
 Usage:
 
