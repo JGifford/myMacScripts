@@ -21,6 +21,7 @@ Scripts
 ### eraseOptical
 > Erases an optical device from the commandline rather than using the
 > Disk Utility GUI.
+>
 > (I have several CD-RW that I use in my car, the one that can't play my iPod.)
 
 ### startVMheadless (not yet released)
@@ -44,9 +45,9 @@ Usage:
 
 To-do List
 
-+ Perhaps add an option (-d|--destination ?) to install.sh allowing an
++ Perhaps add an option (`-d|--destination` ?) to install.sh allowing an
 alternate installation destination.
-+ Perhaps add an option (-d|--delete or -u|--uninstall ?) to cleanly uninstall.
++ Perhaps add an option (`-d|--delete` or `-u|--uninstall` ?) to cleanly uninstall.
 
 ===
 END
