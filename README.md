@@ -16,7 +16,8 @@ Scripts
 
 ### powerCheck
 > When coupled with a crontab entry, periodically checks the system's power
-> sources and sends an alert if configured.
+> sources for changes (e.g., AC Power to Battery Power) and sends an alert
+> (if configured) or just logs to a logfile.
 
 ### eraseOptical
 > Erases an optical device from the commandline rather than using the
@@ -29,7 +30,7 @@ Scripts
 
 ### twitterDM       (not yet released)
 > Sends a Twitter DM (possibly to yourself). Useful as an alerting mechanism.
-> Uses 
+> Makes use of http://supertweet.net
 
 Installing
 ----------
@@ -47,7 +48,8 @@ To-do List
 
 + Perhaps add an option (`-d|--destination` ?) to install.sh allowing an
 alternate installation destination.
-+ Perhaps add an option (`-d|--delete` or `-u|--uninstall` ?) to cleanly uninstall.
++ Perhaps add an option (`-d|--delete` or `-u|--uninstall` ?) to cleanly
+uninstall.
 
 ===
 END
