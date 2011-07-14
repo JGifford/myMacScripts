@@ -1,0 +1,139 @@
+#!/bin/sh
+#
+# vmHeadless  This shell script takes care of starting and stopping
+#	      VirtualBox VMs on reboot
+#
+
+. /etc/rc.common
+
+#APCPID=/var/run/apcupsd.pid
+#APCLOCK=/var/run/apcupsd.lock
+#VirtualBox --startvm "AirPrint" --type headless &
+NAME="vmHeadless"
+CONFIGFILE="/etc/$NAME.cfg"
+SCRIPTNAME="/Library/StartupItems/$NAME/$NAME"
+#PIDFILE=/var/run/$NAME.pid
+# or, if multiple, /var/run/$NAME/pid1,pid2,pid3, etc.
+LOGDIR=/var/log
+LOGFILE=$LOGDIR/$NAME.log
+# Override systemwide VERBOSE setting for this instance                                                 
+VERBOSE="yes"
+DEBUG="yes"                                                                                            
+
+#                                                                                                       
+# Function that creates the LOGDIR if needed                                                            
+#                                                                                                       
+makelogdir()
+{
+    # make a directory for logfile                                                       
+    if [ ! -d $LOGDIR ]; then
+        [ -n "$DEBUG" ] && echo "making logdir $LOGDIR"
+        install -d -g root -m 1775 -o root $LOGDIR
+        RETVAL=$?
+        [ -n "$DEBUG" ] && echo `ls -al $LOGDIR`
+        return $RETVAL
+    fi
+}
+
+touchlogfile()
+{
+    LOGFILE=$1
+    # touch the logfile if doesn't exist                                                                
+    if [ ! -f "$LOGFILE" ]; then
+        [ -n "$DEBUG" ] && echo "logfile doesn't exist, touching"
+# use install instead of touch/chmod/chown
+        touch $LOGFILE
+        chmod 644 $LOGFILE
+        chown root.root $LOGFILE
+        [ -n "$DEBUG" ] && echo `ls -al $LOGFILE`
+    fi
+}
+
+#                                                                                                       
+# Function that checks for daemon/service pidfile                                                       
+#                                                                                                       
+checkpid() {
+    # Return                                                                                            
+    #   1 if no pidfile                                                                                 
+    #   1 if pidfile but no matching process (removes pidfile)                                          
+    #   0 if pidfile and process                                                                        
+
+    # No PIDFILE so return 1        
+    [ -f $PIDFILE ] || return 1
+
+    # PIDFILE exists, so get pid                                                                        
+    pid=`cat $PIDFILE`
+    if [ -d /proc/$pid ]; then
+        # PIDFILE exists and so does process, so return 0                                               
+        [ -n "$DEBUG" ] && echo "found PID=$pid"
+        return 0
+    else
+        # PIDFILE exists, but not the process                                                           
+        rm $PIDFILE # do we really want to remove all evidence?                                         
+        return 1
+    fi
+}
+
+#                                                                                                       
+# DEBUG function                                                                                        
+#                                                                                                       
+pidstatus()
+{
+    # check for daemon's pid                                                                            
+    checkpid
+    ISPID=$?
+    # if no pid, then daemon was stopped                                                                
+    if [ $ISPID -eq 1 ]; then
+        [ -n "$DEBUG" ] && echo "no pid, daemon stopped"
+    else
+        [ -n "$DEBUG" ] && echo "found pid"
+        pid=`cat $PIDFILE`
+        echo "pid=         "$pid " Searching for PID....."
+        if [ $pid ]; then
+            echo `ps -ef | grep $pid | grep -v grep`
+        fi
+    fi
+}
+
+
+StartService()
+{
+	ConsoleMessage "Not currently handled"
+}
+
+StopService()
+{
+	ConsoleMessage "Not currently handled"
+}
+
+RestartService()
+{
+	StopService
+
+	StartService
+}
+
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $NAME {start|stop|status|restart}" >&2
+     exit 3
+else
+
+    case "$1" in
+	start)
+	    StartService
+	    ;;
+	stop)
+	    StopService
+	    ;;
+	restart|force-reload)
+	    RestartService
+	    ;;
+	status)
+	    ;;
+	*)
+	    echo "Usage: $NAME {start|stop|status|restart}" >&2
+	    exit 3
+	    ;;
+    esac
+fi

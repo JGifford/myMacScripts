@@ -1,0 +1,7 @@
+{
+   Description     = "Start VirtualBox VMs";
+   Provides        = ("vmHeadless");
+   Requires        = ("VirtualBox);
+   OrderPreference = "Late";
+}
+
