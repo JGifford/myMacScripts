@@ -20,6 +20,8 @@
 # for Macintosh systems
 # Works with both MacBook hardware and Mac Mini hardware
 # (using an APC UPS connected via USB)
+# Do **NOT** use APC PowerChute or apcupsd with this script!!
+#
 # Tested under Mac OS X 10.6.8 and 10.6.7 (or use: uname -v   )
 # Darwin Kernel Version 10.8.0: Tue Jun  7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386
 # Darwin Kernel Version 10.7.0: Sat Jan 29 15:17:16 PST 2011; root:xnu-1504.9.37~1/RELEASE_I386
