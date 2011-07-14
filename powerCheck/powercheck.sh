@@ -16,8 +16,10 @@
 # --------
 #
 # Written by J Gifford < http://JeffreyGifford.com >
-# A script to monitor the power status (Battery Power vs AC Power) for Macintosh systems
-# Works with both MacBook hardware and Mac Mini hardware (using an APC UPS connected via USB)
+# A script to monitor the power status (Battery Power vs AC Power)
+# for Macintosh systems
+# Works with both MacBook hardware and Mac Mini hardware
+# (using an APC UPS connected via USB)
 # Tested under Mac OS X 10.6.8 and 10.6.7 (or use: uname -v   )
 # Darwin Kernel Version 10.8.0: Tue Jun  7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386
 # Darwin Kernel Version 10.7.0: Sat Jan 29 15:17:16 PST 2011; root:xnu-1504.9.37~1/RELEASE_I386
@@ -29,7 +31,8 @@
 # Add to crontab (use crontab -e) in a similar fashion to this:
 # 0,5,10,15,20,25,30,35,40,45,50,55 * * * *       $HOME/bin/powercheck.sh >> $HOME/tmp/powercheck.log 2>&1
 # (one line, no leading whitespace)
-# This crontab entry checks for changes in the system's power every five minutes
+# This crontab entry checks for changes in the system's power every
+# five minutes
 # logging any DEBUG statements into $HOME/tmp/powercheck.log
 #
 # Requirements:
@@ -61,10 +64,12 @@ debug="true"
 # ---------------------------------------------------------
 #
 # Gather Power Management settings currently in use
-STATUS=$(/usr/bin/pmset -g | /usr/bin/grep \* | /usr/bin/awk ' { print $1" "$2 }')
+STATUS=$(/usr/bin/pmset -g | /usr/bin/grep \* | \
+    /usr/bin/awk ' { print $1" "$2 }')
 # ======================
 # Possible STATUS values
 #STATUS="Battery Power"
+#STATUS="UPS Power"
 #STATUS="AC Power"
 #STATUS="Unknown State"
 # ======================
@@ -87,6 +92,15 @@ case $STATUS in
 	fi
 	# Set the alert text
         ALERT=""
+	;;
+
+    "UPS Power") # for systems with a UPS and **NOT** running apcupsd
+	# Debug information
+        if [ $debug ]; then
+	    echo "Changed to UPS Power"
+	fi
+	# Set the alert text
+	ALERT="Changed to UPS Power at `/bin/date`"
 	;;
 
     "Battery Power")
