@@ -8,7 +8,7 @@ A repository of Mac Scripts that I use on the various Macs in my home network.
   * startVMheadless (not yet released)
   * twitterDM       (not yet released)
 + Installing
-  * install.sh
+  * install.sh      (not yet released)
 + To-do List
 
 Scripts
@@ -16,8 +16,14 @@ Scripts
 
 ### powerCheck
 > When coupled with a crontab entry, periodically checks the system's power
-> sources for changes (e.g., AC Power to Battery Power) and sends an alert
+> sources for changes (e.g., AC Power to Battery/UPS Power) and sends an alert
 > (if configured) or just logs to a logfile.
+>
+> Should **NOT** be used with apcupsd. If you have an APC UPS, just use the USB
+> cable provided. No need for apcupsd or PowerChute.
+> 
+> _Note_: This script does _NOT_ provide autoshutdown functionality, only warning
+> alerts via $alert_script !!!!
 
 ### eraseOptical
 > Erases an optical device from the commandline rather than using the
