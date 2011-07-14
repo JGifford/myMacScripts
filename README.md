@@ -22,8 +22,8 @@ Scripts
 > Should **NOT** be used with apcupsd. If you have an APC UPS, just use the USB
 > cable provided. No need for apcupsd or PowerChute.
 > 
-> _Note_: This script does *NOT* provide autoshutdown functionality, only warning
-> alerts via $alert_script !!!!
+> _Note_: This script does **NOT** provide autoshutdown functionality, only
+> warning alerts via $alert_script !!!!
 
 ### eraseOptical
 > Erases an optical device from the commandline rather than using the
