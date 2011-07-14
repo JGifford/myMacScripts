@@ -97,28 +97,28 @@ case $STATUS in
     "UPS Power") # for systems with a UPS and **NOT** running apcupsd
 	# Debug information
         if [ $debug ]; then
-	    echo "Changed to UPS Power"
+	    echo "Changed to $STATUS"
 	fi
 	# Set the alert text
-	ALERT="Changed to UPS Power at `/bin/date`"
+	ALERT="Changed to $STATUS at `/bin/date`"
 	;;
 
     "Battery Power")
 	# Debug information
         if [ $debug ]; then
-	    echo "Changed to Battery Power"
+	    echo "Changed to $STATUS"
 	fi
 	# Set the alert text
-	ALERT="Changed to Battery Power at `/bin/date`"
+	ALERT="Changed to $STATUS at `/bin/date`"
 	;;
 
     "AC Power")
 	# Debug information
         if [ $debug ]; then
-	    echo "Changed to AC Power"
+	    echo "Changed to $STATUS"
 	fi
 	# Set the alert text
-	ALERT="Changed to AC Power at `/bin/date`"
+	ALERT="Changed to $STATUS at `/bin/date`"
 	;;
 
     *)
