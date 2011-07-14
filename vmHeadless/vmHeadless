@@ -3,15 +3,20 @@
 # vmHeadless  This shell script takes care of starting and stopping
 #	      VirtualBox VMs on reboot
 #
+# Usage: sudo vmHeadless start "Start VirtualBox VMs"
+#
 
 . /etc/rc.common
 
-#APCPID=/var/run/apcupsd.pid
-#APCLOCK=/var/run/apcupsd.lock
+#PID=/var/run/apcupsd.pid
 #VirtualBox --startvm "AirPrint" --type headless &
 NAME="vmHeadless"
 CONFIGFILE="/etc/$NAME.cfg"
 SCRIPTNAME="/Library/StartupItems/$NAME/$NAME"
+vboxheadless=/usr/bin/VBoxHeadless
+PS=/bin/ps
+GREP=/usr/bin/grep
+AWK=/usr/bin/awk
 #PIDFILE=/var/run/$NAME.pid
 # or, if multiple, /var/run/$NAME/pid1,pid2,pid3, etc.
 LOGDIR=/var/log
@@ -98,12 +103,12 @@ pidstatus()
 
 StartService()
 {
-	ConsoleMessage "Not currently handled"
+	ConsoleMessage "Starting VirtualBox VMs"
 }
 
 StopService()
 {
-	ConsoleMessage "Not currently handled"
+	ConsoleMessage "Stopping VirtualBox VMs"
 }
 
 RestartService()

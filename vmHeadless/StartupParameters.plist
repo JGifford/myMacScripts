@@ -2,6 +2,11 @@
    Description     = "Start VirtualBox VMs";
    Provides        = ("vmHeadless");
    Requires        = ("VirtualBox);
-   OrderPreference = "Late";
+   OrderPreference = "Last";
+   Messages =
+   {
+	start = "Starting VirtualBox VMs";
+	stop  = "Stopping VirtualBox VMs";
+   };
 }
 
