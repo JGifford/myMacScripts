@@ -105,7 +105,7 @@ case $STATUS in
 	ALERT="Changed to $STATUS at `/bin/date`"
 	;;
 
-    "Battery Power")
+    "Battery Power") # for portable systems (e.g. MacBook)
 	# Debug information
         if [ $debug ]; then
 	    echo "Changed to $STATUS"
@@ -133,7 +133,7 @@ case $STATUS in
 	;;
 esac
 
-if [ $ALERT ]; then
+if [ "$ALERT" ]; then
     $alert_script "$ALERT" >> /dev/null 2>&1
     RETVAL=$?
     if [ $RETVAL -ne 0 ]; then
@@ -143,7 +143,7 @@ fi
 
 # Debug information
 if [ $debug ]; then
-    if [ $ALERT ]; then
+    if [ "$ALERT" ]; then
 	echo "Alert: "$ALERT
     else
 	echo "Alert: <none sent>"
