@@ -56,6 +56,8 @@ To-do List
 alternate installation destination.
 + Perhaps add an option (`-d|--delete` or `-u|--uninstall` ?) to cleanly
 uninstall.
++ Perhaps add an option (`-r|--replace` ?) to install.sh allowing a re-install
+that replaces.
 
 ===
 END
