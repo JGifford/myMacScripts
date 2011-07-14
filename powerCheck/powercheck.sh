@@ -26,8 +26,17 @@
 # Darwin Kernel Version 10.8.0: Tue Jun  7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386
 # Darwin Kernel Version 10.7.0: Sat Jan 29 15:17:16 PST 2011; root:xnu-1504.9.37~1/RELEASE_I386
 
+# To see if apcupsd installed and running
+# /var/run/apcupsd.pid
+# if found with contents, check that pid for activity
 
-
+# ps -ef | grep [a]pcupsd
+# if not running (not found), then returns 1
+#
+# if apcupsd running, then
+# /sbin/apcaccess | grep STATUS | awk '{ print $3 }'
+# will return ONLINE if on UPS
+# will return XXXXXX if on AC Power
 
 # Usage:
 # Add to crontab (use crontab -e) in a similar fashion to this:
