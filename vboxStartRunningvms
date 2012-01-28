@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# After reboot:
+for guest in `cat guest_list.txt`
+do
+    vboxmanage startvm $guest --type headless
+done

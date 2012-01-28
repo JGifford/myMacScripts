@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Prior to shutdown:
+echo "" > guest_list.txt
+for guest in `vboxmanage list runningvms | awk -F"\"" '{ print $2 }'`
+do
+    vboxmanage controlvm $guest savestate
+    echo $guest >> guest_list.txt
+done
